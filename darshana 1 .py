@@ -1,95 +1,49 @@
-print("Hello Enter your name!")
-
-name = input("Name:-")
-print(f"Hello, {name}! Nice to meet you!")
-
-import math
-radius = float(input("Enter the radius of the circle: "))
-area = math.pi * radius ** 2
-print(f"The area of the circle with radius {radius} is {area:.2f}")
-
-length = float(input("Enter the length of the rectangle: "))
-width = float(input("Enter the width of the rectangle: "))
-perimeter = 2 * (length + width)
-area = length * width
-print(f"The perimeter of the rectangle is {perimeter:.2f}")
-print(f"The area of the rectangle is {area:.2f}")
-
-num1 = int(input("Enter the first integer: "))
-num2 = int(input("Enter the second integer: "))
-num3 = int(input("Enter the third integer: "))
-
-sum_of_numbers = num1 + num2 + num3
-product_of_numbers = num1 * num2 * num3
-average_of_numbers = sum_of_numbers / 3
-
-print(f"The sum of the numbers is: {sum_of_numbers}")
-print(f"The product of the numbers is: {product_of_numbers}")
-print(f"The average of the numbers is: {average_of_numbers:.2f}")
-
-LOT_TO_GRAMS = 13.3
-POUND_TO_LOTS = 32
-TALENT_TO_POUNDS = 20
-
-talents = int(input("Enter the number of talents: "))
-pounds = int(input("Enter the number of pounds: "))
-lots = int(input("Enter the number of lots: "))
-
-total_lots = (talents * TALENT_TO_POUNDS * POUND_TO_LOTS) + (pounds * POUND_TO_LOTS) + lots
-total_grams = total_lots * LOT_TO_GRAMS
-
-kilograms = int(total_grams // 1000)
-grams = total_grams % 1000
-print(f"The total weight is {kilograms} kilograms and {grams:.2f} grams.")
-
 import random
-code_3_digit = [random.randint(0, 9) for _ in range(3)]
-code_4_digit = [random.randint(1, 6) for _ in range(4)]
-print(f"3-digit lock code: {''.join(map(str, code_3_digit))}")
-print(f"4-digit lock code: {''.join(map(str, code_4_digit))}")
+num_dice = int(input("How many dice would you like to roll? "))
+total_sum = 0
+for i in range(num_dice):
+    roll = random.randint(1, 6)
+    print(f"Roll {i+1}: {roll}")
+    total_sum += roll
+print(f"Total sum of rolls: {total_sum}")
 
-SIZE_LIMIT = 42
-zander_length = float(input("Enter the length of the zander in centimeters: "))
-if zander_length < SIZE_LIMIT:
-    difference = SIZE_LIMIT - zander_length
-    print(f"The zander is too small and must be released back into the lake. It is {difference:.2f} cm below the size limit.")
+
+numbers = []
+while True:
+    user_input = input("Enter a number (or press Enter to quit): ")
+    if user_input == "":
+        break
+
+    try:
+        number = int(user_input)
+        numbers.append(number)
+    except ValueError:
+        print("Please enter a valid number.")
+
+numbers.sort(reverse=True)
+print(f"The five greatest numbers are: {numbers[:9]}")
+
+
+def is_prime(n):
+
+    if n < 2:
+        return False
+
+    for i in range(2, int(n ** 0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
+number = int(input("Enter an integer: "))
+
+if is_prime(number):
+    print(f"{number} is a prime number.")
 else:
-    print("The zander meets the size limit. You can keep it!")
+    print(f"{number} is not a prime number.")
 
-cabin_class = input("Enter the cabin class (LUX, A, B, C): ").upper()
-if cabin_class == "LUX":
-    print("LUX: upper-deck cabin with a balcony.")
-elif cabin_class == "A":
-    print("A: above the car deck, equipped with a window.")
-elif cabin_class == "B":
-    print("B: windowless cabin above the car deck.")
-elif cabin_class == "C":
-    print("C: windowless cabin below the car deck.")
-else:
-    print("Invalid cabin class.")
-
-gender = input("Enter your biological gender (male/female): ").lower()
-hemoglobin_value = float(input("Enter your hemoglobin value (g/l): "))
-
-if gender == "female":
-    if hemoglobin_value < 117:
-        print("Your hemoglobin level is low.")
-    elif 117 <= hemoglobin_value <= 155:
-        print("Your hemoglobin level is normal.")
-    else:
-        print("Your hemoglobin level is high.")
-elif gender == "male":
-    if hemoglobin_value < 134:
-        print("Your hemoglobin level is low.")
-    elif 134 <= hemoglobin_value <= 167:
-        print("Your hemoglobin level is normal.")
-    else:
-        print("Your hemoglobin level is high.")
-else:
-    print("Invalid gender entered. Please enter either 'male' or 'female'.")
-
-year = int(input("Enter a year: "))
-if (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0):
-    print(f"{year} is a leap year.")
-else:
-    print(f"{year} is not a leap year.")
+cities = []
+for i in range(5):
+    city = input(f"Enter the name of city {i+1}: ")
+    cities.append(city)
+print("\nThe cities you entered are:")
+for city in cities:
+    print(city)
