@@ -1,131 +1,97 @@
-'''file = open("example.txt","w")
-file.write("Life is beautiful")
-file.close()
 
+num = 3
+while num <= 1000:
+    if num % 3 == 0:
+        print(num)
+    num += 3
 
-file = open("example.txt", "r")
-content =  file.read()
-print(content)
-file.close()
-file  = open("example.txt", "a")
-file.write("\ndarshana")
-file.close()
-with open("example.txt", "r") as file:
-    content = file.read()
-    print(content)'''
-'''try:
-     num1 = int(input("Enter the first number: "))
-     num2 = int(input("Enter the second number: "))
-     result = num1 / num2
-     print(f"result: {result}")
-except Exception as e:
-    print(f"Error: {e}")'''
-'''class Dog:
-    pass
-dog = Dog()
-dog.name = "Bubbles"
-dog.birth_year = 2022
-print(f"{dog.name} is {dog.birth_year}.")'''
-'''class Dog:
-    def __init__(self, name, birth_year, sound="Woof Woof"):
-        self.name = name
-        self.birth_year = birth_year
-        self.sound = sound
-    def bark(self, times):
-        for i in range(times):
-            print(self.sound)
-        return
-dog1 = Dog("Rascal" , 2018)
-dog2 = Dog("Boi" , 2022, "Yip yop yip")
-
-dog1.bark(2)
-dog2.bark(5)
-
-class Dog:
-    created = 0
-    def __init__(self, name, birth_year, sound="Woof Woof"):
-        self.name = name
-        self.birth_year = birth_year
-        self.sound = sound
-        dog.created = Dog.created + 1
-
-    dog1 = Dog("Rascal" , 2018)
-    dog2 = Dog("Boi" , 2022, "Yip yop yip")
-    dog3 = Dog("Rascal" , 2018)
-'''
-
-
-
-seasons = ("Winter", "Spring", "Summer", "Autumn")
-month = int(input("Enter the month number (1-12): "))
-if month in (12, 1, 2):
-    season = seasons[0]
-elif month in (3, 4, 5):
-    season = seasons[1]
-elif month in (6, 7, 8):
-    season = seasons[2]
-elif month in (9, 10, 11):
-    season = seasons[3]
-else:
-    season = "Invalid month"
-print(f"The season for month {month} is: {season}")
-
-
-
-
-
-
-names = set()
-
-while True:
-    name = input("Enter a name (or press Enter to finish): ")
-
-
-    if name == "":
-        break
-
-
-    if name in names:
-        print("Existing name")
-    else:
-        print("New name")
-        names.add(name)
-
-
-print("\nNames entered:")
-for name in names:
-    print(name)
-
-
-    airports = {}
+    conversion_factor = 2.54
 
     while True:
+        inches = float(input("Enter a value in inches (negative value to quit): "))
 
-        print("\nMenu:")
-        print("1. Enter a new airport")
-        print("2. Fetch an existing airport")
-        print("3. Quit")
-        choice = input("Choose an option (1, 2, or 3): ")
-
-        if choice == "1":
-            icao_code = input("Enter the ICAO code of the airport: ").upper()
-            if icao_code in airports:
-                print(f"Airport with ICAO code {icao_code} already exists.")
-            else:
-                airport_name = input("Enter the name of the airport: ")
-                airports[icao_code] = airport_name
-                print(f"Airport {airport_name} with ICAO code {icao_code} added.")
-
-        elif choice == "2":
-            icao_code = input("Enter the ICAO code of the airport to fetch: ").upper()
-            if icao_code in airports:
-                print(f"The name of the airport with ICAO code {icao_code} is {airports[icao_code]}.")
-            else:
-                print(f"No airport found with ICAO code {icao_code}.")
-
-        elif choice == "3":
-            print("Quitting the program.")
+        if inches < 0:
+            print("Negative value entered. Program will end.")
             break
+        centimeters = inches * conversion_factor
+        print(f"{inches} inches is equal to {centimeters} centimeters.")
 
+        numbers = []
+
+        while True:
+            user_input = input("Enter a number (or press Enter to quit): ")
+            if user_input == "":
+                break
+
+            try:
+                number = float(user_input)
+                numbers.append(number)
+            except ValueError:
+                print("Invalid input. Please enter a valid number.")
+        if numbers:
+            print(f"The smallest number is: {min(numbers)}")
+            print(f"The largest number is: {max(numbers)}")
         else:
-            print("Invalid choice. Please enter 1, 2, or 3.")
+            print("No numbers were entered.")
+
+            import random
+            number_to_guess = random.randint(1, 10)
+            while True:
+                user_input = input("Guess a number between 1 and 10: ")
+
+                try:
+                    guess = int(user_input)
+                    if guess < number_to_guess:
+                        print("Too low!")
+                    elif guess > number_to_guess:
+                        print("Too high!")
+                    else:
+                        print("Correct! You've guessed the number!")
+                        break
+                except ValueError:
+                    print("Please enter a valid number between 1 and 10.")
+
+
+correct_username = "python"
+correct_password = "rules"
+attempts = 0
+max_attempts = 5
+while attempts < max_attempts:
+    username = input("Enter username: ")
+    password = input("Enter password: ")
+    if username == correct_username and password == correct_password:
+        print("Welcome")
+        break
+    else:
+        attempts += 1
+        print(f"Incorrect username or password. You have {max_attempts - attempts} attempts left.")
+
+    if attempts == max_attempts:
+        print("Access denied")
+
+import random
+def approximate_pi(num_points):
+    points_inside_circle = 0
+
+    for _ in range(num_points):
+        x = random.uniform(-1, 1)
+        y = random.uniform(-1, 1)
+        if x ** 2 + y ** 2 < 1:
+            points_inside_circle += 1
+
+    pi_approximation = 4 * points_inside_circle / num_points
+    return pi_approximation
+
+def main():
+    num_points = int(input("Enter the number of random points to generate: "))
+
+    pi_value = approximate_pi(num_points)
+
+    print(f"Approximation of pi using {num_points} points: {pi_value}")
+if __name__ == "__main__":
+    main()
+
+
+
+
+
