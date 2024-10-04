@@ -1,95 +1,138 @@
-
-num = 3
-while num <= 1000:
-    if num % 3 == 0:
-        print(num)
-    num += 3
-
-    conversion_factor = 2.54
-
-    while True:
-        inches = float(input("Enter a value in inches (negative value to quit): "))
-
-        if inches < 0:
-            print("Negative value entered. Program will end.")
-            break
-        centimeters = inches * conversion_factor
-        print(f"{inches} inches is equal to {centimeters} centimeters.")
-
-        numbers = []
-
-        while True:
-            user_input = input("Enter a number (or press Enter to quit): ")
-            if user_input == "":
-                break
-
-            try:
-                number = float(user_input)
-                numbers.append(number)
-            except ValueError:
-                print("Invalid input. Please enter a valid number.")
-        if numbers:
-            print(f"The smallest number is: {min(numbers)}")
-            print(f"The largest number is: {max(numbers)}")
-        else:
-            print("No numbers were entered.")
-
-            import random
-            number_to_guess = random.randint(1, 10)
-            while True:
-                user_input = input("Guess a number between 1 and 10: ")
-
-                try:
-                    guess = int(user_input)
-                    if guess < number_to_guess:
-                        print("Too low!")
-                    elif guess > number_to_guess:
-                        print("Too high!")
-                    else:
-                        print("Correct! You've guessed the number!")
-                        break
-                except ValueError:
-                    print("Please enter a valid number between 1 and 10.")
-
-
-correct_username = "python"
-correct_password = "rules"
-attempts = 0
-max_attempts = 5
-while attempts < max_attempts:
-    username = input("Enter username: ")
-    password = input("Enter password: ")
-    if username == correct_username and password == correct_password:
-        print("Welcome")
-        break
-    else:
-        attempts += 1
-        print(f"Incorrect username or password. You have {max_attempts - attempts} attempts left.")
-
-    if attempts == max_attempts:
-        print("Access denied")
-
 import random
-def approximate_pi(num_points):
-    points_inside_circle = 0
 
-    for _ in range(num_points):
-        x = random.uniform(-1, 1)
-        y = random.uniform(-1, 1)
-        if x ** 2 + y ** 2 < 1:
-            points_inside_circle += 1
 
-    pi_approximation = 4 * points_inside_circle / num_points
-    return pi_approximation
+def roll_dice():
+    return random.randint(1, 6)
+
 
 def main():
-    num_points = int(input("Enter the number of random points to generate: "))
-
-    pi_value = approximate_pi(num_points)
-
-    print(f"Approximation of pi using {num_points} points: {pi_value}")
+    while True:
+        result = roll_dice()
+        print(f"You rolled: {result}")
+        if result == 6:
+            print("You rolled a 6! Stopping the rolls.")
+            break
 if __name__ == "__main__":
     main()
+
+import random
+
+
+def roll_dice(sides):
+    return random.randint(1, sides)
+
+
+def main():
+
+    sides = int(input("Enter the number of sides on the dice: "))
+
+    while True:
+        result = roll_dice(sides)
+        print(f"You rolled: {result}")
+        if result == sides:
+            print(f"You rolled a {sides}! Stopping the rolls.")
+            break
+if __name__ == "__main__":
+    main()
+
+
+def gallons_to_liters(gallons):
+    liters = gallons * 3.78541
+    return liters
+
+
+def main():
+    while True:
+        user_input = input("Enter the volume in gallons (negative value to quit): ")
+
+        try:
+            gallons = float(user_input)
+            if gallons < 0:
+                print("Negative value entered. Exiting the program.")
+                break
+            liters = gallons_to_liters(gallons)
+            print(f"{gallons} gallons is equal to {liters:.2f} liters.")
+
+        except ValueError:
+            print("Invalid input. Please enter a valid number.")
+
+
+if __name__ == "__main__":
+    main()
+
+
+def sum_of_list(numbers):
+    total = sum(numbers)
+    return total
+
+
+def main():
+    test_list = [10, 20, 30, 40, 50]
+
+    total_sum = sum_of_list(test_list)
+
+    print(f"The sum of the list {test_list} is: {total_sum}")
+
+
+if __name__ == "__main__":
+    main()
+
+
+def remove_odd_numbers(numbers):
+    even_numbers = [num for num in numbers if num % 2 == 0]
+    return even_numbers
+
+
+def main():
+    original_list = [10, 21, 32, 43, 54, 65, 76, 87, 98]
+
+    filtered_list = remove_odd_numbers(original_list)
+
+    print(f"Original list: {original_list}")
+    print(f"List without odd numbers: {filtered_list}")
+if __name__ == "__main__":
+    main()
+
+import math
+
+
+def calculate_unit_price(diameter, price):
+    radius = diameter / 2
+    area = math.pi * (radius ** 2)
+    area_square_meters = area / 10000
+    unit_price = price / area_square_meters
+    return unit_price
+
+def main():
+    print("Enter details for Pizza 1:")
+    diameter1 = float(input("Diameter (cm): "))
+    price1 = float(input("Price (€): "))
+
+    print("Enter details for Pizza 2:")
+    diameter2 = float(input("Diameter (cm): "))
+    price2 = float(input("Price (€): "))
+
+    unit_price1 = calculate_unit_price(diameter1, price1)
+    unit_price2 = calculate_unit_price(diameter2, price2)
+
+    print(f"\nUnit price for Pizza 1: €{unit_price1:.2f} per square meter.")
+    print(f"Unit price for Pizza 2: €{unit_price2:.2f} per square meter.")
+
+    if unit_price1 < unit_price2:
+        print("Pizza 1 provides better value for money.")
+    elif unit_price2 < unit_price1:
+        print("Pizza 2 provides better value for money.")
+    else:
+        print("Both pizzas provide the same value for money.")
+
+
+if __name__ == "__main__":
+    main()
+
+
+
+
+
 
 
 
